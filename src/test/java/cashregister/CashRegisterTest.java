@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -49,8 +50,15 @@ public class CashRegisterTest {
     @Test
     public void should_verify_with_process_call_with_mockito() {
         //given
+    	Printer printer=Mockito.mock(Printer.class);//mock
+    	Purchase purchase=Mockito.mock(Purchase.class);
+    	Mockito.when(purchase.asString()).thenReturn("test product\t1.0\n");
         //when
+    	CashRegister cashregister=new CashRegister(printer);
+    	cashregister.process(purchase);
         //then
+    	Mockito.verify(printer).print("test product\t1.0\n");
+    	
     }
 
 }
