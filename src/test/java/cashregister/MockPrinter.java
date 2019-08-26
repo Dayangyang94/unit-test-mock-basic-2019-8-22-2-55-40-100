@@ -5,6 +5,9 @@ public class MockPrinter extends Printer {
 	public String getTempText() {
 		return tempText;
 	}
+	public void setTempText(String tempText) {
+		this.tempText=tempText;
+	}
 	@Override
 	public void print(String printThis) {
 		super.print(printThis);
